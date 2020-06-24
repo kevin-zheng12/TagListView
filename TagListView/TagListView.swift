@@ -361,18 +361,18 @@ open class TagListView: UIView {
     }
 
     @discardableResult
-    open func addTag(_ title: String) -> TagView {
+    @objc open func addTag(_ title: String) -> TagView {
         defer { rearrangeViews() }
         return addTagView(createNewTagView(title))
     }
     
     @discardableResult
-    open func addTags(_ titles: [String]) -> [TagView] {
+    @objc open func addTags(_ titles: [String]) -> [TagView] {
         return addTagViews(titles.map(createNewTagView))
     }
     
     @discardableResult
-    open func addTagView(_ tagView: TagView) -> TagView {
+    @objc open func addTagView(_ tagView: TagView) -> TagView {
         defer { rearrangeViews() }
         tagViews.append(tagView)
         tagBackgroundViews.append(UIView(frame: tagView.bounds))
@@ -381,7 +381,7 @@ open class TagListView: UIView {
     }
     
     @discardableResult
-    open func addTagViews(_ tagViewList: [TagView]) -> [TagView] {
+    @objc open func addTagViews(_ tagViewList: [TagView]) -> [TagView] {
         defer { rearrangeViews() }
         tagViewList.forEach {
             tagViews.append($0)
@@ -391,13 +391,13 @@ open class TagListView: UIView {
     }
 
     @discardableResult
-    open func insertTag(_ title: String, at index: Int) -> TagView {
+    @objc open func insertTag(_ title: String, at index: Int) -> TagView {
         return insertTagView(createNewTagView(title), at: index)
     }
     
 
     @discardableResult
-    open func insertTagView(_ tagView: TagView, at index: Int) -> TagView {
+    @objc open func insertTagView(_ tagView: TagView, at index: Int) -> TagView {
         defer { rearrangeViews() }
         tagViews.insert(tagView, at: index)
         tagBackgroundViews.insert(UIView(frame: tagView.bounds), at: index)
@@ -409,11 +409,11 @@ open class TagListView: UIView {
         tagViews[index].titleLabel?.text = title
     }
     
-    open func removeTag(_ title: String) {
+    @objc open func removeTag(_ title: String) {
         tagViews.reversed().filter({ $0.currentTitle == title }).forEach(removeTagView)
     }
     
-    open func removeTagView(_ tagView: TagView) {
+    @objc open func removeTagView(_ tagView: TagView) {
         defer { rearrangeViews() }
         
         tagView.removeFromSuperview()
@@ -423,7 +423,7 @@ open class TagListView: UIView {
         }
     }
     
-    open func removeAllTags() {
+    @objc open func removeAllTags() {
         defer {
             tagViews = []
             tagBackgroundViews = []
